@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
             $table->string("title");
-            $table->text("description");
+            $table->text("content");
             $table->foreignId("user_id")->constrained(table: "users", column: "id")->cascadeOnDelete();
             $table->boolean("is_publish"); // if not false it means its being draft
             $table->timestamps();

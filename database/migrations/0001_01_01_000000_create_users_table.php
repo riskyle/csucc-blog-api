@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,6 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->string('role'); // admin and user only
+            $table->boolean('protected_user')->default(false); // admin cannot be delete
             $table->timestamps();
         });
 
@@ -36,6 +38,16 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+
+        // the default user
+        User::create([
+            'name' => "Admin",
+            'email' => "admin@example.com",
+            'password' => Hash::make("password"),
+            'email_verified_at' => now(),
+            'role' => 'admin',
+            'protected_user' => true,
+        ]);
     }
 
     /**
