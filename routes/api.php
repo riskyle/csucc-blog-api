@@ -16,5 +16,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::delete('admin/blog/delete/{id}', [BlogController::class, "delete"]);
     
     Route::get('blogs', [BlogController::class, "index"]);
+    Route::get('blog/{id}', [BlogController::class, "readBlog"]);
     Route::post('blog/store', [BlogController::class, "store"]);
 });

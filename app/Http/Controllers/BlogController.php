@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\Blogs\BlogCollection;
+use App\Http\Resources\Blogs\BlogResource;
 use Illuminate\Http\Request;
 use App\Models\Blog;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,12 @@ class BlogController extends Controller
 
         $blogs = new BlogCollection(Blog::latest()->get());
         return $blogs;
+    }
+
+    public function readBlog($id) {
+        $blog = new BlogResource(Blog::find($id));
+
+        return $blog;
     }
 
     public function store(Request $request) {
@@ -58,7 +65,10 @@ class BlogController extends Controller
             'is_publish' => $request->input('is_publish'),
         ]);
 
-        return $blog;
+        return response()->json([
+            'message' => 'Blog updated successfully',
+            'blog' => $blog
+        ], 201);
     }
 
     public function delete($id){
@@ -66,6 +76,10 @@ class BlogController extends Controller
 
         $blog = Blog::find($id);
         $blog->delete();
+
+        return response()->json([
+            'message' => 'Blog deleted successfully',
+        ], 201);
     }
 
     public function publish(Request $request, $id){
@@ -78,7 +92,10 @@ class BlogController extends Controller
             'is_publish' => $is_publish,
         ]);
 
-        return $blog;
+        return response()->json([
+            'message' => 'Blog published successfully',
+            'blog' => $blog,
+        ], 201);
     }
 
     public function checkIfAdmin() {
