@@ -7,7 +7,11 @@ use App\Models\Blog;
 
 class BlogController extends Controller
 {
-    Blog::create([
-        
-    ]);
+    public function store() {
+
+    }
+
+    public function index() {
+
+    }
 }

@@ -8,11 +8,9 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('users', function ($id) {
-        
-    });
-    
-    Route::get('users', function ($id) {
-        
-    });
+    Route::get('blog/index', [BlogController::class, "index"]);
+    Route::get('blog/store', [BlogController::class, "store"]);
+    Route::get('blog/edit', [BlogController::class, "edit"]);
+    Route::get('blog/update', [BlogController::class, "update"]);
+    Route::get('blog/delete', [BlogController::class, "delete"]);
 });
