@@ -58,6 +58,12 @@ class BlogController extends Controller
     public function update(Request $request, $id){
         $this->checkIfAdmin();
 
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'is_publish' => 'required|boolean',
+        ]);
+
         $blog = Blog::find($id);
         $blog->update([
             'title' => $request->input('title'),

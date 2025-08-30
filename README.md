@@ -19,3 +19,8 @@
 -   Step 5: Run `php artisan migrate` in your terminal. I'm using SQLite for faster configuration so I have much time to create the system.
 
 -   Step 6: Run `php artisan serve` in your terminal.
+
+## Admin account
+
+-   email: `admin@example.com`
+-   password: `password`
